@@ -43,7 +43,7 @@ with open("www_access_20140823.log","r") as f:
 ```
 
 <h6 align="center" style = "color:black" >数据库中共有19739条数据</h6>
-![](./img/database.PNG)
+![数据库](img/database.PNG)
 
 <h6 align="center" style = "color:black" >用flask搭建本地服务器</h6>
 
@@ -89,7 +89,8 @@ if __name__ == "__main__":
 
 
 <h6 align="center" style = "color:black" >利用echarts对数据进行可视化</h6>
-```python
+
+```javascript
 <!DOCTYPE html>
 <html style="height: 100%">
 <head>
@@ -197,12 +198,13 @@ if __name__ == "__main__":
 
 ```
 
+
 <br>
 <h6 align="center" style = "color:black" >用Postman对数据接口做测试</h6>
-![](./img/test.PNG)
+![测试](img/test.PNG)
 
 <h6 align="center" style = "color:black" >最终的可视化结果</h6>
-![](./img/final.PNG)
+![可视化](img/final.PNG)
 
 
 #### 展望
