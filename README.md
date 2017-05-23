@@ -43,7 +43,7 @@ with open("www_access_20140823.log","r") as f:
 ```
 
 <h6 align="center" style = "color:black" >数据库中共有19739条数据</h6>
-![](img/database.PNG)
+![](./img/database.PNG)
 
 <h6 align="center" style = "color:black" >用flask搭建本地服务器</h6>
 
@@ -89,7 +89,7 @@ if __name__ == "__main__":
 
 
 <h6 align="center" style = "color:black" >利用echarts对数据进行可视化</h6>
-```html
+```python
 <!DOCTYPE html>
 <html style="height: 100%">
 <head>
@@ -101,6 +101,7 @@ if __name__ == "__main__":
     <script src="../static/theme/macarons.js"></script>
 </head>
 <body style="height: 100%; margin: 0">
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
 <div id="main" style="height: 100%"></div>
 
 <script type="text/javascript">
@@ -118,7 +119,7 @@ if __name__ == "__main__":
             alert("请求响应失败");
         }
     });
-	// 获取json对象的长度
+
     function getJsonObjLength(jsonObj) {
         var Length = 0;
         for (var item in jsonObj) {
@@ -140,9 +141,10 @@ if __name__ == "__main__":
             arr.push(item);
         }
 
-        // 测试json解析是否成功 console.log(id)
-
+        // console.log(id)
+        // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main'),'macarons');
+        // 指定图表的配置项和数据
 
         option = {
             title : {
@@ -197,10 +199,10 @@ if __name__ == "__main__":
 
 <br>
 <h6 align="center" style = "color:black" >用Postman对数据接口做测试</h6>
-![](img/test.PNG)
+![](./img/test.PNG)
 
 <h6 align="center" style = "color:black" >最终的可视化结果</h6>
-![](img/final.PNG)
+![](./img/final.PNG)
 
 
 #### 展望
