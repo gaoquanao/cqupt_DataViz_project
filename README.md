@@ -201,13 +201,11 @@ if __name__ == "__main__":
 
 <br>
 <h6 align="center" style = "color:black" >用Postman对数据接口做测试</h6>
-![测试](./img/test.png)
+![测试](./img/testdata.png)
 
 <h6 align="center" style = "color:black" >最终的可视化结果</h6>
-![可视化](./img/final.png)
+![可视化](./img/result.png)
 
 
 #### 展望
 ##### 这次只用到了HTTP的状态码，接下来会做一个利用IP地址解析出物理地址的Geo可视化。
-
-![](./img/test.jpg)
