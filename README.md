@@ -43,7 +43,7 @@ with open("www_access_20140823.log","r") as f:
 ```
 
 <h6 align="center" style = "color:black" >数据库中共有19739条数据</h6>
-![数据库](./img/database.png)
+![数据库](./img/database.jpg)
 
 <h6 align="center" style = "color:black" >用flask搭建本地服务器</h6>
 
@@ -201,10 +201,10 @@ if __name__ == "__main__":
 
 <br>
 <h6 align="center" style = "color:black" >用Postman对数据接口做测试</h6>
-![测试](./img/testdata.png)
+![测试](./img/testdata.jpg)
 
 <h6 align="center" style = "color:black" >最终的可视化结果</h6>
-![可视化](./img/result.png)
+![可视化](./img/result.jpg)
 
 
 #### 展望
