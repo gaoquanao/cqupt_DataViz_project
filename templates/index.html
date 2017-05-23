@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <!-- 引入 echarts.js -->
+    <script src="../static/js/echarts.min.js"></script>
+    <script src="../static/js/jquery-3.2.1.js"></script>
+    <script src="../static/theme/macarons.js"></script>
+</head>
+<body style="height: 100%; margin: 0">
+<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+<div id="main" style="height: 100%"></div>
+
+<script type="text/javascript">
+
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:5000/data",
+        data: null,
+        dataType: "json",
+        success: function (data) {
+            alert("成功获得响应")
+            PieChart(data);
+        },
+        error: function () {
+            alert("请求响应失败");
+        }
+    });
+
+    function getJsonObjLength(jsonObj) {
+        var Length = 0;
+        for (var item in jsonObj) {
+            Length++;
+        }
+        return Length;
+    }
+
+    function PieChart(data) {
+
+        var id = [];
+        var num = [];
+        var arr = [];
+        var arrayLength = getJsonObjLength(data);
+        for (var i = 0; i < arrayLength; i++) {
+            id.push(data[i]._id);
+            num.push(data[i].num_count);
+            var item = {value: data[i].num_count, name: data[i]._id};
+            arr.push(item);
+        }
+
+        // console.log(id)
+        // 基于准备好的dom，初始化echarts实例
+        var myChart = echarts.init(document.getElementById('main'),'macarons');
+        // 指定图表的配置项和数据
+
+        option = {
+            title : {
+                text: 'HTTP状态码分布',
+                textStyle: {fontSize: 24},
+                subtext: '基于数据库log文件',
+                x:'center'
+            },
+            tooltip : {
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
+            },
+            legend: {
+                orient: 'horizontal',
+                left: 'left',
+                data: id
+            },
+            toolbox: {
+                show: true,
+                feature: {
+                    dataView: {readOnly: false},
+                    // magicType: {show: true, type:['pie','chord']},
+                    restore: {},
+                    saveAsImage: {}
+                }
+            },
+            series : [
+                {
+                    name: 'HTTP状态码分布',
+                    type: 'pie',
+                    radius : '55%',
+                    center: ['50%', '60%'],
+                    data: arr,
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
+                }
+            ]
+        };
+        myChart.setOption(option,true)
+    }
+
+</script>
+</body>
+</html>
