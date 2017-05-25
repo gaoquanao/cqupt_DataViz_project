@@ -21,7 +21,7 @@
         dataType: "json",
         success: function (data) {
             alert("成功获得响应")
-            PieChart(data);
+            LineChart(data);
         },
         error: function () {
             alert("请求响应失败");
@@ -40,21 +40,19 @@
 
         var id = [];
         var count = [];
-        <!--var arr = [];-->
         var arrayLength = getJsonObjLength(data);
         for (var i = 0; i < arrayLength; i++) {
             id.push(data[i]._id);
             count.push(data[i].count);
-            <!--var item = {value: data[i].count, name: data[i]._id};-->
-            <!--arr.push(item);-->
         }
 
-        // console.log(id)
+        console.log(id);
+        console.log(count);
         var myChart = echarts.init(document.getElementById('main'),'macarons');
 
         option = {
             title : {
-                text: '访问量(秒级)',
+                text: '网站访问量(秒级)',
                 textStyle: {fontSize: 24},
                 subtext: '基于Nginx日志文件',
                 x:'center'
@@ -75,8 +73,21 @@
                 }
             },
 
+            dataZoom: [
+                {
+                    show: true,
+                    start: 10,
+                    end: 90
+                },
+                {
+                    type: 'inside',
+                    start: 10,
+                    end: 90
+
+                }
+            ],
             xAxis: {
-                type: 'time',
+                type: 'category',
                 data: id
             },
 
