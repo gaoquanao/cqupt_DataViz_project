@@ -13,11 +13,11 @@
 - Python
 
 #### 运行方式：
-`启动 mongodb mongod --dbpath "C:\data\db"`
+- 启动 mongodb mongod --dbpath "C:\data\db"
 
-`启动 flask python app.py`
+- 启动 flask python app.py
 
-`在浏览器中 localhost:5000 查看可视化结果`
+- 在浏览器中 localhost:5000 查看可视化结果
 
 #### 实现过程：
 - python做数据预处理，存入mongodb中
