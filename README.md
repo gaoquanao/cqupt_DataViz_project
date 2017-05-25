@@ -1,4 +1,4 @@
-# 基于日志的HTTP状态码可视化 
+# 基于Nginx日志的HTTP状态码可视化 
 
 
 #### 目的：
@@ -11,6 +11,13 @@
 - Flask
 - echarts3 
 - Python
+
+#### 运行方式：
+- 启动 mongodb mongod --dbpath "C:\data\db"
+
+- 启动 flask python app.py
+
+- 在浏览器中 localhost:5000 查看可视化结果
 
 #### 实现过程：
 - python做数据预处理，存入mongodb中
@@ -217,5 +224,8 @@ if __name__ == "__main__":
 <img src="http://i4.buimg.com/588926/d96147c8dd69f2e1.jpg">
 </div>
 
+#### 意义
+##### 从图中可以看出HTTP状态码304的比例为17.98%，而304代表NOT MODIFIED，即缓存命中了，以此可以直观的看出Nginx服务器的缓存命中率。
+
 #### 展望
-##### 这次只用到了HTTP的状态码，接下来会做一个利用IP地址解析出物理地址的Geo可视化。
+##### 这次只用到了HTTP的状态码，接下来会做IP地址Geo可视化和访问量可视化。
