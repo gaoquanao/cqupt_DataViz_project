@@ -77,7 +77,7 @@ COLLECTION_NAME = 'log'
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template(pie_index.html)
 
 # 该路由用于ajax获取数据
 @app.route("/data")
@@ -224,8 +224,8 @@ if __name__ == "__main__":
 <img src="http://i4.buimg.com/588926/d96147c8dd69f2e1.jpg">
 </div>
 
-#### 意义
-##### 从图中可以看出HTTP状态码304的比例为17.98%，而304代表NOT MODIFIED，即缓存命中了，以此可以直观的看出Nginx服务器的缓存命中率。
+#### 意义：
+从图中可以看出HTTP状态码304的比例为17.98%，而304代表NOT MODIFIED，即缓存命中了，以此可以直观的看出Nginx服务器的缓存命中率。
 
-#### 展望
-##### 这次只用到了HTTP的状态码，接下来会做IP地址Geo可视化和访问量可视化。
+#### 展望：
+这次只用到了HTTP的状态码，接下来会做IP地址Geo可视化和访问量可视化。

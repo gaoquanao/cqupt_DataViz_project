@@ -16,7 +16,7 @@
 
     $.ajax({
         type: "GET",
-        url: "http://localhost:5000/time",
+        url: "http://localhost:5000/data",
         data: null,
         dataType: "json",
         success: function (data) {
@@ -36,61 +36,63 @@
         return Length;
     }
 
-    function LineChart(data) {
+    function PieChart(data) {
 
         var id = [];
-        var count = [];
-        <!--var arr = [];-->
+        var num = [];
+        var arr = [];
         var arrayLength = getJsonObjLength(data);
         for (var i = 0; i < arrayLength; i++) {
             id.push(data[i]._id);
-            count.push(data[i].count);
-            <!--var item = {value: data[i].count, name: data[i]._id};-->
-            <!--arr.push(item);-->
+            num.push(data[i].num_count);
+            var item = {value: data[i].num_count, name: data[i]._id};
+            arr.push(item);
         }
 
         // console.log(id)
+        // 基于准备好的dom，初始化echarts实例
         var myChart = echarts.init(document.getElementById('main'),'macarons');
+        // 指定图表的配置项和数据
 
         option = {
             title : {
-                text: '访问量(秒级)',
+                text: 'HTTP状态码分布',
                 textStyle: {fontSize: 24},
-                subtext: '基于Nginx日志文件',
+                subtext: '基于数据库log文件',
                 x:'center'
             },
             tooltip : {
-                trigger: 'axis',
-                axisPointer: {
-                    type: 'cross'
-                }
+                trigger: 'item',
+                formatter: "{a} <br/>{b} : {c} ({d}%)"
             },
-
+            legend: {
+                orient: 'horizontal',
+                left: 'left',
+                data: id
+            },
             toolbox: {
                 show: true,
                 feature: {
                     dataView: {readOnly: false},
+                    // magicType: {show: true, type:['pie','chord']},
                     restore: {},
                     saveAsImage: {}
                 }
             },
-
-            xAxis: {
-                type: 'time',
-                data: id
-            },
-
-            yAxis: {
-                type: 'value',
-                axisPointer: {
-                    snap: true
-                }
-            },
             series : [
                 {
-                    name: '访问量',
-                    type: 'line',
-                    data: count
+                    name: 'HTTP状态码分布',
+                    type: 'pie',
+                    radius : '55%',
+                    center: ['50%', '60%'],
+                    data: arr,
+                    itemStyle: {
+                        emphasis: {
+                            shadowBlur: 10,
+                            shadowOffsetX: 0,
+                            shadowColor: 'rgba(0, 0, 0, 0.5)'
+                        }
+                    }
                 }
             ]
         };

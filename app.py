@@ -16,7 +16,7 @@ COLLECTION_NAME = 'log'
 
 @app.route("/")
 def index():
-    return render_template("index.html")
+    return render_template("pie_index.html")
 
 # 该路由用于ajax获取数据
 @app.route("/data")
@@ -32,6 +32,19 @@ def data():
     connection.close()
 
     return json_projects
+
+@app.route("/time")
+def time():
+    conn = MongoClient("localhost", 27017)
+    db = conn['log_vis']
+    projects = db.log.aggregate([{"$group" : {"_id" : "$time", "count" : {"$sum" : 1}}}])
+    json_projects = []
+    for project in projects:
+        json_projects.append(project)
+    json_projects = json.dumps(json_projects, default=json_util.default)
+    conn.close()
+
+    return  json_projects
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0',port=5000,debug=True)
