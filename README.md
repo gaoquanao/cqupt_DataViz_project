@@ -43,7 +43,11 @@ with open("www_access_20140823.log","r") as f:
 ```
 
 <h6 align="center" style = "color:black" >数据库中共有19739条数据</h6>
-![](http://i4.buimg.com/588926/6cf15ac8bd938647.jpg)
+
+
+<div style="text-align: center">
+<img src="http://i4.buimg.com/588926/6cf15ac8bd938647.jpg">
+</div>
 
 <h6 align="center" style = "color:black" >用flask搭建本地服务器</h6>
 
@@ -201,11 +205,17 @@ if __name__ == "__main__":
 
 <br>
 <h6 align="center" style = "color:black" >用Postman对数据接口做测试</h6>
-![](http://i4.buimg.com/588926/95b9db46e9b11cd0.png)
+
+<div style="text-align: center">
+<img src="http://i4.buimg.com/588926/95b9db46e9b11cd0.png">
+</div>
+
 
 <h6 align="center" style = "color:black" >最终的可视化结果</h6>
-![](http://i4.buimg.com/588926/d96147c8dd69f2e1.jpg)
 
+<div style="text-align: center">
+<img src="http://i4.buimg.com/588926/d96147c8dd69f2e1.jpg">
+</div>
 
 #### 展望
 ##### 这次只用到了HTTP的状态码，接下来会做一个利用IP地址解析出物理地址的Geo可视化。
