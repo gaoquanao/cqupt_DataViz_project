@@ -459,11 +459,9 @@ if __name__ == "__main__":
 从图中可以看出HTTP状态码304的比例为17.98%，而304代表NOT MODIFIED，即缓存命中了，以此可以直观的看出Nginx服务器的缓存命中率。
 
 #### 网站流量图
-<div style="text-align: center">
 
-<img src="https://github.com/gamblenull1996/cqupt_DataViz_project/blob/master/img/linechart.gif“>
+![gif](/img/linechart.gif)
 
-</div>
 
 #### 展望：
 
