@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html style="height: 100%">
+<head>
+    <meta charset="utf-8">
+    <title>ECharts</title>
+    <script src="../static/js/echarts.min.js"></script>
+    <script src="../static/js/jquery-3.2.1.js"></script>
+    <script src="../static/js/china.js"></script>
+    <script src="../static/theme/macarons.js"></script>
+</head>
+
+<body style="height: 100%; margin: 0">
+
+	<div id="main" style="height: 100%">
+	</div>
+
+<script type="text/javascript">
+
+    var myChart = echarts.init(document.getElementById('main'));
+
+    myChart.showLoading();
+
+    $.ajax({
+        type: "GET",
+        url: "http://localhost:5000/geo",
+        dataType: "json",
+        success: function (data) {
+            var option = optionFactory(data);
+            myChart.hideLoading();
+            myChart.setOption(option);
+        },
+        error: function () {
+            alert("请求响应失败");
+        }
+    });
+
+    function convertData(data) {
+        var res = [];
+        for (var i = 0; i < data.length; i++) {
+            res.push({
+                name: data[i].name,
+                value: geoCoord.concat(data[i].value)
+            });
+        }
+        return res;
+    }
+
+
+//Echarts的series.data是定义图表数据内容的数组其数据格式为
+//    {
+//        name: '北京',    // 数据项名称，在这里指地区名称
+//
+//            value: [        // 数据项值
+//        116.46,     // 地理坐标，经度
+//        39.92,      // 地理坐标，纬度
+//        340         // 北京地区的数值
+//    ]
+//    }
+
+    function optionFactory(data) {
+
+        var option = {
+            title: {
+                text: '访问网站的IP分布',
+                subtext: '基于Nginx日志',
+                left: 'center',
+                textStyle: {
+                    color: '#fff'
+                }
+            },
+
+            geo: {
+                map: 'china',
+
+                itemStyle: {
+                    normal: {
+                        areaColor: '#323c48',
+                        borderColor: '#111'
+                    },
+                    emphasis: {
+                        areaColor: '#2a333d'
+                    }
+                }
+            },
+
+            tooltip: {
+                trigger: 'item'
+            },
+
+            backgroundColor: '#404a59',
+            series: [{
+                name: 'IP访问量',
+                type: 'scatter',
+                coordinateSystem: 'geo',
+                data: data,
+                symbolSize: function (val) {
+                    return Math.max(val[2] / 30, 15);
+                }
+            }],
+
+            visualMap: {
+                type: 'continuous',
+                min: 0,
+                max: 2000,
+                calculable: true,
+                inRange: {
+                    color: ['#50a3ba', '#eac736', '#d94e5d']
+                },
+                textStyle: {
+                    color: '#fff'
+                }
+            }
+        };
+        return option;
+    }
+
+
+</script>
+</body>
+</html>
