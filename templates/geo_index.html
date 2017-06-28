@@ -11,15 +11,12 @@
 
 <body style="height: 100%; margin: 0">
 
-	<div id="main" style="height: 100%">
-	</div>
+    <div id="main" style="height: 100%">
+    </div>
 
 <script type="text/javascript">
-
     var myChart = echarts.init(document.getElementById('main'));
-
     myChart.showLoading();
-
     $.ajax({
         type: "GET",
         url: "http://localhost:5000/geo",
@@ -33,7 +30,6 @@
             alert("请求响应失败");
         }
     });
-
     function convertData(data) {
         var res = [];
         for (var i = 0; i < data.length; i++) {
@@ -44,8 +40,6 @@
         }
         return res;
     }
-
-
 //Echarts的series.data是定义图表数据内容的数组其数据格式为
 //    {
 //        name: '北京',    // 数据项名称，在这里指地区名称
@@ -56,9 +50,7 @@
 //        340         // 北京地区的数值
 //    ]
 //    }
-
     function optionFactory(data) {
-
         var option = {
             title: {
                 text: '访问网站的IP分布',
@@ -68,10 +60,8 @@
                     color: '#fff'
                 }
             },
-
             geo: {
                 map: 'china',
-
                 itemStyle: {
                     normal: {
                         areaColor: '#323c48',
@@ -82,11 +72,9 @@
                     }
                 }
             },
-
             tooltip: {
                 trigger: 'item'
             },
-
             backgroundColor: '#404a59',
             series: [{
                 name: 'IP访问量',
@@ -97,7 +85,6 @@
                     return Math.max(val[2] / 30, 15);
                 }
             }],
-
             visualMap: {
                 type: 'continuous',
                 min: 0,
@@ -113,8 +100,6 @@
         };
         return option;
     }
-
-
 </script>
 </body>
 </html>

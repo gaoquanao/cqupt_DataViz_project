@@ -16,7 +16,7 @@ COLLECTION_NAME = 'log'
 
 @app.route("/")
 def index():
-    return render_template("geo_index.html")
+    return render_template("pie_index.html")
 
 # 该路由用于ajax获取数据
 @app.route("/data")
